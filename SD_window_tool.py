@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 # ============== #
 # User variables #
 # ============== #
-zmax_in = 5e4      # Any z>10^8 will give the full (primordial) window function
+zmax_in = 1e6      # Any z>10^8 will give the full (primordial) window function
 kmin_in = 1e-4     # Interpolation will work best for 1e-4 < k < 1e9
 kmax_in = 1e9
 k_points_in = 3000
@@ -42,7 +42,10 @@ if __name__ == "__main__":
 
     # Get fit with user's parameters
     k_arr_out = np.geomspace(kmin_in, kmax_in, k_points_in)
-    w_arr_out = window_fit(zmax_in, k_arr_out)
+    if (zmax_in <= 5e4):
+        w_arr_out = np.zeros(k_points_in)
+    else:
+        w_arr_out = window_fit(zmax_in, k_arr_out)[:, 0]
 
     # Write output to file
     ofile = open(filename_out, 'w')
@@ -50,7 +53,7 @@ if __name__ == "__main__":
     for i in range(k_points_in):
         ofile.write(str(k_arr_out[i]))
         ofile.write(' ')
-        ofile.write(str(w_arr_out[i, 0]))
+        ofile.write(str(w_arr_out[i]))
         if (i+1 < k_points_in):
             ofile.write('\n')
     ofile.close()
