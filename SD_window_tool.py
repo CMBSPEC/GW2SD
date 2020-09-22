@@ -83,6 +83,7 @@ def get_mu_from_file():
     window_fit = interpolate_data()
 
     # Attempt to read user file. This line may need modification
+    # Works for space separated values with order: k PT(K)
     data = np.genfromtxt(filename_in)
     PT = interp1d(data[:, 0], data[:, 1], kind='cubic')
 
