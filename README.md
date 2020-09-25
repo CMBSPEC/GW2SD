@@ -1,4 +1,4 @@
-# SD_GW_tool
+# GW2SD
 A simple tool for getting accurate window functions and calculate SD signals from GW.
 
 The code can write window functions to a file, with specified z_max and k range (in Mpc^-1).
