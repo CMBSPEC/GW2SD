@@ -4,7 +4,7 @@
 SD Tensor Window Function Tool
 
 This code will give the SD window function for tensor perturbations injected at
-different redshifts zmax. This is outlined in the paper ***INSERT***
+different redshifts zmax. This is outlined in the paper 2010.00040
 
 Author: Tom Kite (thomas.kite@manchester.ac.uk)
 """
