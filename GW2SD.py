@@ -55,7 +55,7 @@ def interpolate_data():
         w_arr_in = np.load("data/w_arr_data_free.npy")
     else:
         print("nu_damp must be True or False")
-    return interp2d(zmax_arr_in, k_arr_in, w_arr_in, kind='cubic')
+    return interp2d(zmax_arr_in, k_arr_in, w_arr_in, kind='linear')
 
 
 def get_window():
@@ -91,8 +91,8 @@ def get_mu_from_file():
 
     # Perform integration
     rval = quad(lambda lnk: window_fit(zmax_in, np.exp(lnk))*PT(np.exp(lnk)),
-                np.log(1.e-4), np.log(1e11),
-                epsabs=1.e-30, epsrel=1.e-7,
+                np.log(1.e-4), np.log(1e9),
+                epsabs=1.e-20, epsrel=1.e-5,
                 limit=300)[0]
 
     return rval
@@ -134,4 +134,4 @@ if __name__ == "__main__":
         else:
             print("input_type must be 'function' or 'file'!")
 
-        print("<mu> = " + str(mu_amplitude))
+        print("<mu> = {}".format(mu_amplitude))
